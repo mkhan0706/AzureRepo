@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy ASP.Net Core app to Azure Web App - fammtech
+name: Build and deploy ASP.Net Core app to Azure Web App - FAMMTech
 
 on:
   push:
@@ -51,15 +51,15 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_11663BC26C5C41858FCADE53E41B0AC8 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_D292CB5783054C93BAFA5A42C972DE9D }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_374C493004AC48FFB821983908D9BF7B }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_D1C3DF665C63407AA3E807E6C6759C55 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_08A542E4CC90400096DFA6765B2F950A }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_FA4999B93B8D42D3A4A724EE830F1370 }}
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'fammtech'
+          app-name: 'FAMMTech'
           slot-name: 'Production'
           package: .
           
