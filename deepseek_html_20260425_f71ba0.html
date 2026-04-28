@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>FAMM Technologies | Cloud + DevOps Training (AWS & Azure)</title>
+  <!-- Google Fonts + Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #ffffff;
+      color: #1e293b;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* header / navbar */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid #e9eef3;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 1rem 0;
+    }
+
+    .logo h1 {
+      font-size: 1.7rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #0F2B4D, #1E4A76);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .logo span {
+      font-weight: 500;
+      font-size: 0.8rem;
+      display: block;
+      color: #475569;
+      letter-spacing: 0;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 600;
+      color: #1e293b;
+      transition: 0.2s;
+      font-size: 1rem;
+    }
+
+    .nav-links a:hover {
+      color: #2273c7;
+    }
+
+    /* mobile menu */
+    .menu-toggle {
+      display: none;
+      font-size: 1.6rem;
+      cursor: pointer;
+    }
+
+    /* buttons and general */
+    .btn-primary {
+      background: #0F2B4D;
+      color: white;
+      padding: 12px 28px;
+      border-radius: 40px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-block;
+      transition: 0.25s ease;
+      border: none;
+      cursor: pointer;
+      font-size: 0.9rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .btn-primary:hover {
+      background: #1A4A78;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .btn-outline {
+      border: 1.5px solid #0F2B4D;
+      background: transparent;
+      padding: 10px 24px;
+      border-radius: 40px;
+      font-weight: 600;
+      text-decoration: none;
+      color: #0F2B4D;
+      transition: 0.2s;
+      display: inline-block;
+    }
+
+    .btn-outline:hover {
+      background: #0F2B4D;
+      color: white;
+    }
+
+    section {
+      padding: 80px 0;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+
+    .section-sub {
+      text-align: center;
+      color: #4b5563;
+      max-width: 700px;
+      margin: 0 auto 48px auto;
+      font-size: 1.15rem;
+    }
+
+    /* hero */
+    .hero {
+      background: linear-gradient(120deg, #f8fafc 0%, #eef2ff 100%);
+      padding: 80px 0 70px;
+    }
+
+    .hero-grid {
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-content {
+      flex: 1;
+    }
+
+    .hero-content h1 {
+      font-size: 3.2rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      color: #0a2540;
+    }
+
+    .badge-group {
+      display: flex;
+      gap: 12px;
+      margin: 24px 0;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      background: white;
+      padding: 6px 16px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.8rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      border: 1px solid #e2e8f0;
+    }
+
+    .hero-stats {
+      margin-top: 28px;
+      display: flex;
+      gap: 28px;
+    }
+
+    /* courses grid */
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 32px;
+      margin-top: 20px;
+    }
+
+    .course-card {
+      background: white;
+      border-radius: 28px;
+      padding: 1.8rem;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+      transition: all 0.25s;
+      border: 1px solid #eef2f6;
+    }
+
+    .course-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 35px -12px rgba(0, 0, 0, 0.12);
+    }
+
+    .course-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .course-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+    }
+
+    .cert-list {
+      list-style: none;
+      margin: 16px 0 20px;
+    }
+    .cert-list li {
+      padding: 6px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+    }
+    .cert-list i {
+      color: #1e4a76;
+      width: 20px;
+    }
+
+    /* Why Us features */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+    .feature-item {
+      text-align: center;
+      padding: 1.5rem;
+      background: #f9fbfe;
+      border-radius: 32px;
+    }
+    .feature-icon {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+    }
+
+    /* about */
+    .about-text {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+      font-size: 1.1rem;
+      color: #334155;
+    }
+
+    /* contact + whatsapp section */
+    .contact-wrap {
+      background: #f0f4fa;
+      border-radius: 48px;
+      padding: 48px 40px;
+      margin-top: 20px;
+    }
+    .contact-flex {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3rem;
+      justify-content: space-between;
+    }
+    .form-col {
+      flex: 1.2;
+      min-width: 260px;
+    }
+    .info-col {
+      flex: 0.9;
+    }
+    .input-group {
+      margin-bottom: 1.2rem;
+    }
+    .input-group input, .input-group textarea {
+      width: 100%;
+      padding: 14px 18px;
+      border: 1px solid #cbd5e1;
+      border-radius: 28px;
+      font-family: inherit;
+      transition: 0.2s;
+      background: white;
+    }
+    .input-group input:focus, .input-group textarea:focus {
+      outline: none;
+      border-color: #0F2B4D;
+      box-shadow: 0 0 0 3px rgba(15,43,77,0.1);
+    }
+    .whatsapp-btn {
+      background: #25D366;
+      color: white;
+      padding: 14px 24px;
+      border-radius: 60px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      margin: 20px 0 10px;
+      transition: 0.2s;
+    }
+    .whatsapp-btn:hover {
+      background: #1da851;
+      transform: scale(1.02);
+    }
+    .contact-note {
+      margin-top: 20px;
+      font-size: 1rem;
+    }
+    footer {
+      background: #0a1927;
+      color: #cbd5e6;
+      padding: 40px 0;
+      text-align: center;
+    }
+
+    @media (max-width: 900px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: white;
+        padding: 20px 0;
+        gap: 1rem;
+      }
+      .nav-links.active {
+        display: flex;
+      }
+      .menu-toggle {
+        display: block;
+      }
+      .nav-container {
+        flex-wrap: wrap;
+      }
+      .hero-content h1 {
+        font-size: 2.4rem;
+      }
+      .section-title {
+        font-size: 2rem;
+      }
+    }
+    @media (max-width: 600px) {
+      .container {
+        padding: 0 20px;
+      }
+      .contact-flex {
+        flex-direction: column;
+      }
+    }
+    .cert-icon {
+      color: #f39c12;
+    }
+    hr {
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+
+<header class="navbar">
+  <div class="container nav-container">
+    <div class="logo">
+      <h1>FAMM Technologies</h1>
+      <span>Cloud & DevOps Mastery</span>
+    </div>
+    <div class="menu-toggle" id="mobile-menu">
+      <i class="fas fa-bars"></i>
+    </div>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#courses">Courses</a></li>
+      <li><a href="#whyus">Why Us</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact Us</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+  <!-- Home Section -->
+  <section id="home" class="hero">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <h1>Accelerate your career in <span style="color:#1E4A76;">Cloud + DevOps</span></h1>
+        <p style="font-size: 1.2rem; color: #2c3e50;">Master AWS & Azure with industry-recognized certifications. Hands-on training, real projects, and expert mentorship.</p>
+        <div class="badge-group">
+          <span class="badge"><i class="fab fa-aws"></i> AWS Certified</span>
+          <span class="badge"><i class="fab fa-microsoft"></i> Azure Certified</span>
+          <span class="badge"><i class="fas fa-code-branch"></i> DevOps Tools</span>
+          <span class="badge"><i class="fas fa-cloud"></i> Terraform, K8s, CI/CD</span>
+        </div>
+        <div class="hero-stats">
+          <div><strong>10+</strong> <br>Certifications</div>
+          <div><strong>100%</strong> <br>Job Assistance</div>
+          <div><strong>Live Labs</strong> <br>24/7 Access</div>
+        </div>
+        <div style="margin-top: 30px;">
+          <a href="#courses" class="btn-primary">Explore Courses →</a>
+          <a href="#contact" class="btn-outline" style="margin-left: 15px;">Get in touch</a>
+        </div>
+      </div>
+      <div style="flex:0.8; text-align:center;">
+        <i class="fas fa-chalkboard-user" style="font-size: 12rem; color: #B8D0E5; opacity: 0.7;"></i>
+      </div>
+    </div>
+  </section>
+
+  <!-- Courses Section (with all standard AWS + Azure certifications) -->
+  <section id="courses">
+    <div class="container">
+      <h2 class="section-title">Our Training Programs</h2>
+      <p class="section-sub">Complete pathway to become a Cloud & DevOps specialist — including all major AWS and Azure certifications</p>
+      <div class="courses-grid">
+        
+        <!-- AWS Card -->
+        <div class="course-card">
+          <div class="course-icon"><i class="fab fa-aws" style="color:#FF9900;"></i></div>
+          <h3>AWS Cloud & DevOps</h3>
+          <p>End-to-end training for AWS certifications and DevOps fluency. Covers all standard certs:</p>
+          <ul class="cert-list">
+            <li><i class="fas fa-certificate"></i> AWS Certified Cloud Practitioner</li>
+            <li><i class="fas fa-certificate"></i> AWS Solutions Architect (Associate/Pro)</li>
+            <li><i class="fas fa-certificate"></i> AWS Developer Associate</li>
+            <li><i class="fas fa-certificate"></i> AWS SysOps Admin</li>
+            <li><i class="fas fa-certificate"></i> AWS DevOps Engineer</li>
+            <li><i class="fas fa-certificate"></i> AWS Security & Advanced Networking</li>
+          </ul>
+          <p><strong>Tools:</strong> EC2, S3, Lambda, EKS, CloudFormation, CodePipeline, Terraform.</p>
+        </div>
+
+        <!-- Azure Card -->
+        <div class="course-card">
+          <div class="course-icon"><i class="fab fa-microsoft" style="color:#0078D4;"></i></div>
+          <h3>Microsoft Azure & DevOps</h3>
+          <p>Expert-led Azure training covering fundamental to expert-level certifications:</p>
+          <ul class="cert-list">
+            <li><i class="fas fa-certificate"></i> Azure Fundamentals (AZ-900)</li>
+            <li><i class="fas fa-certificate"></i> Azure Administrator (AZ-104)</li>
+            <li><i class="fas fa-certificate"></i> Azure Developer (AZ-204)</li>
+            <li><i class="fas fa-certificate"></i> Azure DevOps Expert (AZ-400)</li>
+            <li><i class="fas fa-certificate"></i> Azure Solutions Architect (AZ-305)</li>
+            <li><i class="fas fa-certificate"></i> Azure Security Engineer (AZ-500)</li>
+          </ul>
+          <p><strong>Tools:</strong> Azure VM, AKS, Functions, ARM/Bicep, DevOps Boards, Pipelines.</p>
+        </div>
+        
+        <!-- DevOps + Cloud tools -->
+        <div class="course-card">
+          <div class="course-icon"><i class="fas fa-cogs"></i></div>
+          <h3>DevOps Toolchain Mastery</h3>
+          <p>Integrate modern DevOps practices across AWS & Azure. Core tools:</p>
+          <ul class="cert-list">
+            <li><i class="fab fa-docker"></i> Docker & Containerization</li>
+            <li><i class="fas fa-cubes"></i> Kubernetes (EKS/AKS)</li>
+            <li><i class="fas fa-code-branch"></i> Git & GitHub Actions / GitLab CI</li>
+            <li><i class="fas fa-infinity"></i> Jenkins, Ansible, Terraform</li>
+            <li><i class="fas fa-chart-line"></i> Prometheus, Grafana, ELK</li>
+          </ul>
+          <p>Real-time projects + capstone + interview preparation.</p>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: 40px;">
+        <a href="#contact" class="btn-primary">Download Course Brochure →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Us Section -->
+  <section id="whyus" style="background: #f9fbfe;">
+    <div class="container">
+      <h2 class="section-title">Why FAMM Technologies?</h2>
+      <p class="section-sub">Your success is our mission — practical, flexible & career-focused.</p>
+      <div class="features-grid">
+        <div class="feature-item"><div class="feature-icon"><i class="fas fa-chalkboard-user"></i></div><h3>Live + Recorded Sessions</h3><p>Interactive classes by certified cloud architects, lifetime access.</p></div>
+        <div class="feature-item"><div class="feature-icon"><i class="fas fa-laptop-code"></i></div><h3>Hands-on Labs</h3><p>Real AWS/Azure sandboxes, DevOps pipelines from day one.</p></div>
+        <div class="feature-item"><div class="feature-icon"><i class="fas fa-certificate"></i></div><h3>Certification Focused</h3><p>Exam vouchers support, practice tests, and bootcamps.</p></div>
+        <div class="feature-item"><div class="feature-icon"><i class="fas fa-briefcase"></i></div><h3>Placement Assistance</h3><p>Resume building, mock interviews, and recruiter connects.</p></div>
+        <div class="feature-item"><div class="feature-icon"><i class="fas fa-clock"></i></div><h3>Flexible Batches</h3><p>Weekday, weekend, and self-paced options available.</p></div>
+        <div class="feature-item"><div class="feature-icon"><i class="fas fa-users"></i></div><h3>Mentorship</h3><p>1:1 career guidance from industry experts.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title">About FAMM Technologies</h2>
+      <div class="about-text">
+        <p style="margin-bottom: 20px;">FAMM Technologies is a premier training provider specialized in Cloud Computing and DevOps across AWS and Azure. Our academy bridges the skill gap by delivering high-quality, job-oriented programs. With a focus on all AWS and Azure certifications, we have empowered 3000+ learners globally to achieve their cloud aspirations.</p>
+        <p>Our trainers are industry veterans with 10+ years of experience, and our curriculum evolves with the latest cloud trends. Join us to transform your career in the most in-demand domains — Cloud & DevOps.</p>
+        <div style="margin: 40px 0 0; display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;">
+          <span><i class="fas fa-check-circle" style="color:#0F2B4D;"></i> 15+ certified courses</span>
+          <span><i class="fas fa-check-circle" style="color:#0F2B4D;"></i> 24/7 learning support</span>
+          <span><i class="fas fa-check-circle" style="color:#0F2B4D;"></i> 100% practical sessions</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Us + WhatsApp & Email Section -->
+  <section id="contact">
+    <div class="container">
+      <h2 class="section-title">Let's Connect</h2>
+      <p class="section-sub">Have questions? Get priority support via email or WhatsApp.</p>
+      <div class="contact-wrap">
+        <div class="contact-flex">
+          <div class="form-col">
+            <h3 style="margin-bottom: 20px;">Send us an email</h3>
+            <form id="emailContactForm" action="#" method="POST">
+              <div class="input-group">
+                <input type="text" id="name" placeholder="Full Name" required>
+              </div>
+              <div class="input-group">
+                <input type="email" id="email" placeholder="Email Address" required>
+              </div>
+              <div class="input-group">
+                <textarea rows="4" id="message" placeholder="Course interest / Query" required></textarea>
+              </div>
+              <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;"><i class="fas fa-paper-plane"></i> Send Message</button>
+              <p style="font-size: 0.8rem; margin-top: 10px; color: #2d3e50;" id="formFeedback"></p>
+            </form>
+          </div>
+          <div class="info-col">
+            <h3><i class="fas fa-comment-dots"></i> Quick Connect</h3>
+            <p style="margin: 20px 0 10px;">Prefer instant replies? Reach us on WhatsApp:</p>
+            <a href="https://wa.me/919449644764?text=Hello%20FAMM%20Technologies%2C%20I'm%20interested%20in%20Cloud%20%2B%20DevOps%20training%20(AWS%20%26%20Azure)" class="whatsapp-btn" target="_blank">
+              <i class="fab fa-whatsapp" style="font-size: 1.6rem;"></i> Chat on WhatsApp +91 94496 44764
+            </a>
+            <div class="contact-note">
+              <i class="fas fa-envelope"></i> <strong>Email us directly:</strong> training@fammtechnologies.com <br>
+              <i class="fas fa-phone-alt"></i> <strong>Call / Support:</strong> +91 94496 44764 (Mon-Sat, 10AM-7PM)
+            </div>
+            <hr style="margin: 25px 0;">
+            <div><i class="fas fa-map-marker-alt"></i>  #302, Tech Hub, Bangalore - 560001 (online & classroom)</div>
+            <div style="margin-top: 20px;"><i class="fas fa-clock"></i> 24/7 support for enrolled students</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <p>© 2025 FAMM Technologies — Master AWS, Azure & DevOps. All rights reserved.</p>
+    <div style="margin-top: 15px;">
+      <a href="#" style="color: #94a3b8; margin: 0 10px;"><i class="fab fa-linkedin"></i></a>
+      <a href="#" style="color: #94a3b8; margin: 0 10px;"><i class="fab fa-twitter"></i></a>
+      <a href="#" style="color: #94a3b8; margin: 0 10px;"><i class="fab fa-instagram"></i></a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // mobile toggle
+  const mobileBtn = document.getElementById('mobile-menu');
+  const navLinks = document.getElementById('nav-links');
+  mobileBtn.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
+
+  // smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      if (href === "#" || href === "") return;
+      const target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth' });
+        if (navLinks.classList.contains('active')) navLinks.classList.remove('active');
+      }
+    });
+  });
+
+  // simple email form simulation (professional alert + clear)
+  const contactForm = document.getElementById('emailContactForm');
+  const feedbackSpan = document.getElementById('formFeedback');
+  if(contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const msg = document.getElementById('message').value.trim();
+      if(name === "" || email === "" || msg === "") {
+        feedbackSpan.innerHTML = "⚠️ Please fill all fields.";
+        feedbackSpan.style.color = "#b91c1c";
+        return;
+      }
+      if(!email.includes('@') || !email.includes('.')) {
+        feedbackSpan.innerHTML = "⚠️ Enter a valid email address.";
+        feedbackSpan.style.color = "#b91c1c";
+        return;
+      }
+      // simulate sending email - open default mail client or just show success message
+      const subject = `Inquiry from ${name} - FAMM Training`;
+      const body = `Name: ${name}%0AEmail: ${email}%0AMessage: ${msg}`;
+      window.location.href = `mailto:training@fammtechnologies.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      feedbackSpan.innerHTML = "✅ Opening your email client! We'll reply ASAP.";
+      feedbackSpan.style.color = "#15803d";
+      contactForm.reset();
+      setTimeout(() => { feedbackSpan.innerHTML = ""; }, 4000);
+    });
+  }
+
+  // also ensure WhatsApp click works perfectly - dynamic link already secure
+  // Additional style for interactive feel
+  console.log("FAMM Technologies site ready — Empower your cloud career");
+</script>
+</body>
+</html>
